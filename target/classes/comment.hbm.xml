@@ -1,0 +1,28 @@
+<?xml version = "1.0" encoding = "utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+"-//Hibernate/Hibernate Mapping DTD//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd"> 
+
+<hibernate-mapping>
+   <class name = "com.mycompany.socialapp.Comment" table = "Comment">
+      
+      <meta attribute = "class-description">
+         This class contains the Comment detail. 
+      </meta>
+      
+      <id name = "id" type = "int" column = "id">
+         <generator class="native"/>
+      </id>
+      
+      <many-to-one name = "user" column = "user_id" 
+         class="com.mycompany.socialapp.User" not-null="true"/>
+      
+      <set name = "replays" cascade="all">
+         <key column = "Comment_id"/>
+         <one-to-many class="com.mycompany.socialapp.Replay"/>
+      </set>
+      
+      <property name = "content" column = "content" type = "string"/>
+      
+   </class>
+</hibernate-mapping>
