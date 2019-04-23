@@ -7,9 +7,10 @@
     <property name="hibernate.connection.url">jdbc:mysql://localhost:3303/social?zeroDateTimeBehavior=convertToNull</property>
     <property name="hibernate.connection.username">social</property>
     <property name="hibernate.connection.password">1111</property>
-    <mapping resource="User.hbm.xml"/>
-    <mapping resource="Post.hbm.xml"/>
-    <mapping resource="comment.hbm.xml"/>
-    <mapping resource="Replay.hbm.xml"/>
+     
+        <mapping class="com.mycompany.socialapp.Comment" />
+        <mapping class="com.mycompany.socialapp.Post" />
+        <mapping class="com.mycompany.socialapp.Replay" />
+        <mapping class="com.mycompany.socialapp.User" />
   </session-factory>
 </hibernate-configuration>

@@ -5,7 +5,7 @@
  */
 package com.mycompany.socialapp;
 
-import java.util.HashSet;
+//import java.util.HashSet;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -26,35 +26,29 @@ public class Manager {
         
         User user = new User("Ahmed");
         
-        Post post1 = new Post("Hello");
-        Post post2 = new Post("Hello again");
-        Post post3 = new Post("Hello tany");
+        Post post1 = new Post("Hello",user);
+        Post post2 = new Post("Hello again",user);
+        Post post3 = new Post("Hello tany",user);
         
-        Comment comment = new Comment("Bravo",user);
-        Comment comment1= new Comment("hahvd",user);
+        Comment comment = new Comment("Bravo",user,post1);
+        Comment comment1= new Comment("hahvd",user,post1);
         
-        Replay replay =new Replay("okay");
-        Replay replay1 =new Replay("Thanks");
+        Replay replay =new Replay("okay",comment);
+        Replay replay1 =new Replay("Thanks",comment1);
         
-        HashSet<Post> set = new HashSet<>();
-        set.add(post1);
-        set.add(post2);
-        set.add(post3);
-        
-        HashSet<Comment> comments = new HashSet<>();
-        comments.add(comment);
-        comments.add(comment1);
-        post1.setComments(comments);
-        user.setPosts(set);
-        
-        HashSet<Replay> replays= new HashSet<>();
-        replays.add(replay);
-        replays.add(replay1);
-        comment.setReplays(replays);
-        
-        Transaction tx = session.beginTransaction();
         session.save(user);
-        //session.save(post);
+        
+        session.save(post1);
+        session.save(post2);
+        session.save(post3);
+        
+        session.save(comment);
+        session.save(comment1);
+        
+        session.save(replay);
+        session.save(replay1);
+
+        Transaction tx = session.beginTransaction();
         
         tx.commit();
         
